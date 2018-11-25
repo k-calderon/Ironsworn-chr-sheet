@@ -80,7 +80,7 @@ var utils = {
         parent ? parent = d.getElementById(parent) : parent = body;
         parent.appendChild(el);
     },
-    "createAsset": function (character, name, text){
+    "createAsset": function (character, name, texst){
         let id = utils.stringToSlugLine(name);
         character.assets[id] = {};
         character.assets[id].name = name;
@@ -123,9 +123,11 @@ var render = {
         utils.updateById("mana", character.tracks.mana.current);
     },
     "assets": function (character){
+        // To-do: Add support for rendering more than the text
         let assets = character.assets;    
         let renderAsset = function (name, text){
             let id = "asset-" + utils.stringToSlugLine(name);
+            // This fails to render the name
             utils.createAndAppendDiv(id, "assets");
             utils.updateById(id, text);
         };

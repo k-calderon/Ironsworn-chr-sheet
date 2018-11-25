@@ -62,49 +62,33 @@ var characterTemplate = {
 
 };
 
-let utils = {
-
+var utils = {
     "updateById": function (id, value){
         let divToUpdate = d.getElementById(id);
         divToUpdate.innerHTML = "";
         divToUpdate.innerHTML = value;
     },
-
     "stringToSlugLine": function (string) {
         return string.toLowerCase()
           .split(/\W/)
           .filter(function(item){ return item !== ""})
           .join("-");        
       },
-
     "createAndAppendDiv": function (id, parent){
         let el = d.createElement("div");
         el.setAttribute("id", id);
         parent ? parent = d.getElementById(parent) : parent = body;
         parent.appendChild(el);
     },
-
     "createAsset": function (character, name, text){
-        function AssetConstructor (name, text){
-            this.name = name;
-            this.text = text;
-        };
         let id = utils.stringToSlugLine(name);
-        /* bugged. creates a nested object that is one level deeper than I want.
-           it's also very sloppy. */
-        character.assets[id] = {}
-        let newAsset = new AssetConstructor(name, text);
-        character.assets[id][name] = name;
+        character.assets[id] = {};
+        character.assets[id].name = name;
         character.assets[id].text = text;
     }
-
 };
 
-var handlers = {
-
-};
-
-var render = {
+var render = {    
     "characterName": function (character){
        utils.updateById("character-name", character.name);
     },
@@ -146,7 +130,7 @@ var render = {
             utils.updateById(id, text);
         };
         for (let asset in assets) {
-            renderAsset(asset.name, asset.text);
+            renderAsset(assets[asset].name, assets[asset].text);
         };
     },
     "all": function (character){
@@ -159,6 +143,7 @@ var render = {
             }
         );
     }
+
 };
 
 function init (){

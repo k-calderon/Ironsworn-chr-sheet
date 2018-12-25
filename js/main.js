@@ -77,10 +77,12 @@ var utils = {
     "createAndAppendDiv": function (id, parent){
         let el = d.createElement("div");
         el.setAttribute("id", id);
-        parent ? parent = d.getElementById(parent) : parent = body;
+        if (!parent){
+            parent = d.body;
+        };
         parent.appendChild(el);
     },
-    "createAsset": function (character, name, texst){
+    "createAsset": function (character, name, text){
         let id = utils.stringToSlugLine(name);
         character.assets[id] = {};
         character.assets[id].name = name;
@@ -125,15 +127,19 @@ var render = {
     "assets": function (character){
         // To-do: Add support for rendering more than the text
         let assets = character.assets;    
-        let renderAsset = function (name, text){
-            let id = "asset-" + utils.stringToSlugLine(name);
-            // This fails to render the name
-            utils.createAndAppendDiv(id, "assets");
-            utils.updateById(id, text);
-        };
-        for (let asset in assets) {
-            renderAsset(assets[asset].name, assets[asset].text);
-        };
+            let assetsDiv = d.getElementById("assets-container");
+            // loop through the contents of asset and render them
+            assetsDiv.innerHTML = "<h2>ASSETS</h2>";
+            for (let asset in assets){
+                // create a child div under assetsDiv
+                let assetId = "asset-" + utils.stringToSlugLine(asset)
+                utils.createAndAppendDiv(assetId, assetsDiv)
+                // render the contents
+                let assetDiv = d.getElementById(assetId);
+                assetDiv.innerHTML = "";
+                assetDiv.innerHTML = "<p>Name: " + assets[asset]["name"] + "</p>\
+                                        <p>Text:" + assets[asset]["text"] + "</p>";
+            }
     },
     "all": function (character){
         let keys = Object.keys(render);

@@ -10,6 +10,16 @@ body {
   border-width: 1px;
   border-color: black;
 }
+.btn-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: red;  
+}
 
 /* .stat-label{
   background-color: red;

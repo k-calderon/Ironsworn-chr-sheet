@@ -11,7 +11,7 @@ var utils = {
       return true;
     } else {
       return false;
-    }
+    };
   },
   randIntBetween: function(min, max) {
     // Guard against non numbers
@@ -35,7 +35,9 @@ var utils = {
   updateById: function(id, value) {
     let divToUpdate = d.getElementById(id);
     divToUpdate.innerHTML = "";
-    divToUpdate.innerHTML = value;
+    if (value){
+      divToUpdate.innerHTML = value;
+    };
   },
   stringToSlugLine: function(string) {
     return string

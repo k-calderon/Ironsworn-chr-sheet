@@ -54,6 +54,10 @@ nav {
   list-style: none;
 }
 
+.burger {
+  display: none;
+}
+
 .burger div {
   width: 25px;
   height: 3px;

@@ -1,7 +1,4 @@
 "use strict";
-var loadTime = Date.now();
-var d = document;
-var w = Window;
 
 var characterFactory = function(){
   return {
@@ -63,14 +60,6 @@ var characterFactory = function(){
   };
 }
 
-var log = function(msg, obj, name) {
-  let now = Date.now();
-  let timer = now - loadTime;
-  name = name || "Generic";
-  console.log(timer + "ms> " + name + "> " + msg, obj);
-  // console.log(msg);
-};
-
 const navSlide = () => {
   const burger = d.querySelector(".burger");
   const nav = d.querySelector(".nav-links");
@@ -92,10 +81,22 @@ const navSlide = () => {
     // Burger animation
     burger.classList.toggle("toggle");
   });  
-}
+};
+
+const initializeLocalStorage = function() {
+  if (typeof localStorage.is_journal !== "undefined") {
+    /* drop out of the init function if the journal object already exists
+    TODO: validate the data */
+    return;
+  }
+  localStorage.isj_campaigns || utils.ls.set("isj_campaigns", []);
+  localStorage.isj_characters || utils.ls.set("isj_characters", []);
+  localStorage.isj_assets || utils.ls.set("isj_assets", []);
+};
 
 function init() {
   navSlide();
+  initializeLocalStorage();
 }
 
 init();

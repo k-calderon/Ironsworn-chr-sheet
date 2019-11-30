@@ -1,4 +1,24 @@
 var utils = {
+  ls: {
+    get: function (key){
+      log(`utils.ls.get> Fetching ${key}`);
+      if(localStorage[key]){
+        return JSON.parse(localStorage[key]);
+      } else {
+        return null;
+      };
+    },
+    set: function (key, value){
+      log(`utils.ls.set> Attempting to set ${key}, ${value}`)
+      localStorage.setItem(key, JSON.stringify(value));
+    },
+    remove: function (key) {
+      log(`utils.ls.remove> Attempting to remove ${key}`);
+      if (key) {
+        localStorage.removeItem(key);
+      };
+    }
+  },
   uuidv4: function() {
     return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
       var r = (Math.random() * 16) | 0,
@@ -11,7 +31,7 @@ var utils = {
       return true;
     } else {
       return false;
-    }
+    };
   },
   randIntBetween: function(min, max) {
     // Guard against non numbers
@@ -35,7 +55,9 @@ var utils = {
   updateById: function(id, value) {
     let divToUpdate = d.getElementById(id);
     divToUpdate.innerHTML = "";
-    divToUpdate.innerHTML = value;
+    if (value){
+      divToUpdate.innerHTML = value;
+    };
   },
   stringToSlugLine: function(string) {
     return string

@@ -1,30 +1,44 @@
 var campaignFactory = function() {
   return {
-    name: "Placeholder",
+    uuid: utils.uuidv4(),
+    name: "New Campaign",
     id: "",
     characters: [],
-    logs: [],
+    journals: [],
     notes: ""
   };
 };
 
-var logFactory = function() {
+var journalFactory = function(){
+  var timestamp = Date.now();
   return {
     uuid: utils.uuidv4(),
-    timestamp: Date.now(),
-    title: "New Log",
+    timeCreated: timestamp,
+    timeModified: timestamp,
+    title: "New Journal",
     description : "",
     author: "",
-    entries: []
-  }
+    characters: [],
+    entries: [],
+    notes: ""
+  };
 };
 
-var logEntryFactory = function (){
+var journalEntryFactory = function (){
+  var timestamp = Date.now();
   return {
     uuid: utils.uuidv4(),
-    timestamp: Date.now(),
+    timeCreated: timestamp,
+    timeModified: timestamp,
     title: "New Log Entry",
     text: "",
     roll: {}
+  }
+};
+
+var journalHelper = {
+  new: function () {
+    var newJournal = journalFactory();
+    
   }
 };

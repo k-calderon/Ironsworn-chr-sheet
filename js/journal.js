@@ -1,14 +1,3 @@
-var campaignFactory = function() {
-  return {
-    uuid: utils.uuidv4(),
-    name: "New Campaign",
-    id: "",
-    characters: [],
-    journals: [],
-    notes: ""
-  };
-};
-
 var journalFactory = function(){
   var timestamp = Date.now();
   return {

@@ -25,9 +25,12 @@ var journalEntryFactory = function (){
   }
 };
 
+var currentJournal = utils.ls.get("currentJournal") || journalFactory();
+
 var journalHelper = {
   new: function () {
     var newJournal = journalFactory();
-    
   }
 };
+
+utils.ls.set("currentJournal", currentJournal);

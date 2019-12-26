@@ -126,6 +126,13 @@ nav{
   background-color: red;
 }
 
+.card {
+  max-width: 80%;
+  -webkit-box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.35);
+  -moz-box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.35);
+  box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.35);
+  margin:  3% auto;
+}
 /* .stat-label{
   background-color: red;
   font-size: 5vh;

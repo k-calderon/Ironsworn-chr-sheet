@@ -9,7 +9,7 @@ var utils = {
       };
     },
     set: function (key, value){
-      log(`utils.ls.set> Attempting to set ${key}, ${value}`)
+      log(`utils.ls.set> Attempting to set ${key}`, value);
       localStorage.setItem(key, JSON.stringify(value));
     },
     remove: function (key) {

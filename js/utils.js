@@ -36,9 +36,7 @@ var utils = {
   randIntBetween: function(min, max) {
     // Guard against non numbers
     if (typeof min !== "number" || typeof max !== "number") {
-      /* TODO: Integrate a logger
-            log("A non-number was passed to randIntBetween.");
-            */
+            log("A non-number was passed to randIntBetween.", [arguments], "Error");
       return;
     }
     // Ensure only integers remain
@@ -73,7 +71,8 @@ var utils = {
     el.setAttribute("id", id);
     if (!parent) {
       parent = d.body;
-    }
+    };
+    log(`Appending div with ID ${id} to`, parent)
     parent.appendChild(el);
   },
   createAsset: function(character, name, text) {
